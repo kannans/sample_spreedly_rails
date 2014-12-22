@@ -1,0 +1,55 @@
+<div class="container">
+  <div class="page-header">
+    <h1>Admin</h1>
+    <h2>
+      <small>
+        <p>
+          If we were doing this for real, we'd want to have an ability for customers to login
+          and have their remembered payment method associated with their account.
+        </p>
+        <p>
+          The goal of this demo though is to simply illustrate how to charge against a previously saved offsite
+          pre-authorization.
+        </p>
+        <p>
+          To simplify things for the demo we just remember the payment methods and their associated email address.
+        </p>
+      </small>
+    </h2>
+
+  </div>
+
+  <p>
+    These are the email addresses of the people who have signed up and been authorized to participate in the Endangered Pet of the Month Club.
+  </p>
+
+  <p>
+    If you click the charge link next to an email address, we'll charge 3 cents against the payment method associated with that email address.
+  </p>
+
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Authorized</th>
+        <th>Email</th>
+        <th>Payment Method Type</th>
+        <th>Actions</th>
+      </tr>
+
+      <tbody>
+
+        <% for payment_method in @payment_methods -%>
+          <tr>
+            <td><%= payment_method.created_at.to_s(:short) %></td>
+            <td><%= payment_method.email %></td>
+            <td><%= payment_method.payment_method_type %></td>
+            <td><%= link_to "Charge", initiate_charge_url(payment_method.token), method: :post %></td>
+          </tr>
+        <% end -%>
+
+      </tbody>
+    </thead>
+
+  </table>
+  
+</div>

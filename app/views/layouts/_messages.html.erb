@@ -1,0 +1,10 @@
+<% unless flash.empty? %>
+  <div class="container">
+    <%= flash_value %>
+  </div>
+  <% if @error %>
+    <div class="error">
+      <%= raw(@error) %>
+    </div>
+  <% end %>
+<% end %>

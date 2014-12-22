@@ -1,0 +1,67 @@
+<div id="credit_card_form" class="<%= @paying_with_credit_card ? nil : 'hidden' %>">
+  <%= fields_for @payment_method.credit_card, as: :credit_card do |f| %>
+    <div class="row-fluid">
+      <div class="span3">
+        <%= f.label :full_name, "Name" %>
+        <%= f.text_field :full_name, class: "span12" %>
+      </div>
+    </div>
+
+    <div class="row-fluid">
+      <div class="span3">
+        <%= f.label :number, "Card Number" %>
+        <%= f.text_field :number, autocomplete: "off", class: "span12" %>
+      </div>
+
+      <div class="span2">
+        <%= f.label :verification_value, "CVV" %>
+        <%= f.text_field :verification_value, autocomplete: "off", class: "span12" %>
+      </div>
+    </div>
+
+    <div class="row-fluid">
+      <div class="span3">
+        <%= f.label :month, "Expiration" %>
+        <%= f.text_field :month, placeholder: "Month", class: "span12" %>
+      </div>
+      <div class="span2">
+        <%= f.label :year, "&nbsp;".html_safe %>
+        <%= f.text_field :year, placeholder: "Year", class: "span12" %>
+      </div>
+    </div>
+
+    <br/>
+    <button type="submit" class="btn btn-primary" id="revealed_pay_with_card_button">Purchase</button>
+  <% end %>
+
+  <div>
+    <br/>
+    <br/>
+    <p>
+      * This is hooked up to a Spreedly Test gateway and does not use real money.
+      <br/>
+      &nbsp; This gateway accepts a <%= link_to 'number of test cards', 'https://docs.spreedly.com/reference/test-data/' %>.  Here are a few examples:
+    </p>
+
+    <table class="table span6">
+      <tr>
+        <th>Card Type</th>
+        <th>Good Card</th>
+        <th>Declined/Failed Card</th>
+      </tr>
+      <td>Visa</td>
+      <td>4111111111111111</td>
+      <td>4012888888881881</td>
+      <tr>
+        <td>MasterCard</td>
+        <td>5555555555554444</td>
+        <td>5105105105105100</td>
+      </tr>
+    </table>
+
+
+  </div>
+
+</div>
+
+
